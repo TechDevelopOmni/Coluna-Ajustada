@@ -14,51 +14,33 @@ export const protectedRoutes: Routes = [
     },
     /** Example purpose only, please remove */
     {
-        key: 'singleMenuItem',
-        path: '/single-menu-view',
-        component: lazy(() => import('@/views/layouts/SingleMenuView')),
+        key: 'Cliente',
+        path: '/cliente',
+        component: lazy(() => import('@/views/layouts/ClienteView')),
         authority: [],
     },
     {
-        key: 'collapseMenu.item1',
-        path: '/collapse-menu-item-view-1',
-        component: lazy(() => import('@/views/layouts/CollapseMenuItemView1')),
+        key: 'CriarCliente',
+        path: '/Criar-Cliente',
+        component: lazy(() => import('@/views/layouts/customers/CustomerCreate')),
         authority: [],
     },
     {
-        key: 'collapseMenu.item2',
-        path: '/collapse-menu-item-view-2',
-        component: lazy(() => import('@/views/layouts/CollapseMenuItemView2')),
+        key: 'ListaCliente',
+        path: '/Lista-Cliente',
+        component: lazy(() => import('@/views/layouts/customers/CustomerList')),
         authority: [],
     },
     {
-        key: 'collapseMenu.item3',
-        path: '/collapse-menu-item-view-3',
-        component: lazy(() => import('@/views/layouts/CollapseMenuItemView3')),
+        key: 'DetalheCliente',
+        path: '/Detalhe-Cliente',
+        component: lazy(() => import('@/views/layouts/customers/CustomerDetails')),
         authority: [],
     },
     {
-        key: 'groupMenu.single',
-        path: '/group-single-menu-item-view',
-        component: lazy(() =>
-            import('@/views/layouts/GroupSingleMenuItemView')
-        ),
-        authority: [],
-    },
-    {
-        key: 'groupMenu.collapse.item1',
-        path: '/group-collapse-menu-item-view-1',
-        component: lazy(() =>
-            import('@/views/layouts/GroupCollapseMenuItemView1')
-        ),
-        authority: [],
-    },
-    {
-        key: 'groupMenu.collapse.item2',
-        path: '/group-collapse-menu-item-view-2',
-        component: lazy(() =>
-            import('@/views/layouts/GroupCollapseMenuItemView2')
-        ),
+        key: 'editarCliente',
+        path: '/Editar-Cliente',
+        component: lazy(() => import('@/views/layouts/customers/CustomerEdit')),
         authority: [],
     },
     {
