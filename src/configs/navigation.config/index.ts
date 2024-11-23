@@ -12,9 +12,25 @@ const navigationConfig: NavigationTree[] = [
         path: '/home',
         title: 'Home',
         translateKey: 'nav.home',
-        icon: 'home',
+        icon: 'navigation',
         type: NAV_ITEM_TYPE_ITEM,
         authority: [],
+        subMenu: [],
+    },
+    {
+        key: 'concepts.ai.image',
+        path: `/agendar`,
+        title: 'Agenda',
+        translateKey: 'nav.conceptsAi.image',
+        icon: 'aiImage',
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        meta: {
+            description: {
+                translateKey: 'nav.conceptsAi.imageDesc',
+                label: 'AI image processing',
+            },
+        },
         subMenu: [],
     },
     {
@@ -22,7 +38,7 @@ const navigationConfig: NavigationTree[] = [
         path: '',
         title: 'CRM',
         translateKey: 'nav.conceptsCustomers.customers',
-        icon: 'pi',
+        icon: 'customers',
         type: NAV_ITEM_TYPE_COLLAPSE,
         authority: [],
         meta: {
@@ -34,7 +50,7 @@ const navigationConfig: NavigationTree[] = [
         subMenu: [
             {
                 key: 'concepts.customers.customerList',
-                path: `/Lista-Cliente`,
+                path: `/listar-cliente`,
                 title: 'Lista',
                 translateKey: 'nav.conceptsCustomers.customerList',
                 icon: 'customerList',
@@ -71,9 +87,9 @@ const navigationConfig: NavigationTree[] = [
     {
         key: 'concepts.customers',
         path: '',
-        title: 'Quiropraxista',
+        title: 'Clinica',
         translateKey: 'nav.conceptsCustomers.customers',
-        icon: 'pi',
+        icon: 'products',
         type: NAV_ITEM_TYPE_COLLAPSE,
         authority: [],
         meta: {
@@ -86,7 +102,7 @@ const navigationConfig: NavigationTree[] = [
             {
                 key: 'concepts.customers.customerList',
                 path: `/Lista-Cliente`,
-                title: 'Lista',
+                title: 'Quiropraxista',
                 translateKey: 'nav.conceptsCustomers.customerList',
                 icon: 'customerList',
                 type: NAV_ITEM_TYPE_ITEM,
@@ -103,7 +119,75 @@ const navigationConfig: NavigationTree[] = [
             {
                 key: 'concepts.customers.customerCreate',
                 path: `/Criar-Cliente`,
-                title: 'Criar',
+                title: 'Planos',
+                translateKey: 'nav.conceptsCustomers.customerCreate',
+                icon: 'customerCreate',
+                type: NAV_ITEM_TYPE_ITEM,
+                authority: [],
+                meta: {
+                    description: {
+                        translateKey:
+                            'nav.conceptsCustomers.customerEditDesc',
+                        label: 'Edit customer info',
+                    },
+                },
+                subMenu: [],
+            },
+        ],
+    },
+    {
+        key: 'concepts.customers',
+        path: '',
+        title: 'Financeiro',
+        translateKey: 'nav.conceptsCustomers.customers',
+        icon: 'uiDataDisplayTooltip',
+        type: NAV_ITEM_TYPE_COLLAPSE,
+        authority: [],
+        meta: {
+            description: {
+                translateKey: 'nav.conceptsCustomers.customersDesc',
+                label: 'Customer management',
+            },
+        },
+        subMenu: [
+            {
+                key: 'concepts.customers.customerList',
+                path: `/Lista-Cliente`,
+                title: 'Contas a Pagar',
+                translateKey: 'nav.conceptsCustomers.customerList',
+                icon: 'customerList',
+                type: NAV_ITEM_TYPE_ITEM,
+                authority: [],
+                meta: {
+                    description: {
+                        translateKey:
+                            'nav.conceptsCustomers.customerListDesc',
+                        label: 'List of all customers',
+                    },
+                },
+                subMenu: [],
+            },
+            {
+                key: 'concepts.customers.customerCreate',
+                path: `/Criar-Cliente`,
+                title: 'Contas a Receber',
+                translateKey: 'nav.conceptsCustomers.customerCreate',
+                icon: 'customerCreate',
+                type: NAV_ITEM_TYPE_ITEM,
+                authority: [],
+                meta: {
+                    description: {
+                        translateKey:
+                            'nav.conceptsCustomers.customerEditDesc',
+                        label: 'Edit customer info',
+                    },
+                },
+                subMenu: [],
+            },
+            {
+                key: 'concepts.customers.customerCreate',
+                path: `/Criar-Cliente`,
+                title: 'Fluxo de Caixa',
                 translateKey: 'nav.conceptsCustomers.customerCreate',
                 icon: 'customerCreate',
                 type: NAV_ITEM_TYPE_ITEM,

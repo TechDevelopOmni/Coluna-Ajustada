@@ -14,12 +14,6 @@ export const protectedRoutes: Routes = [
     },
     /** Example purpose only, please remove */
     {
-        key: 'Cliente',
-        path: '/cliente',
-        component: lazy(() => import('@/views/layouts/ClienteView')),
-        authority: [],
-    },
-    {
         key: 'CriarCliente',
         path: '/Criar-Cliente',
         component: lazy(() => import('@/views/layouts/customers/CustomerCreate')),
@@ -27,8 +21,8 @@ export const protectedRoutes: Routes = [
     },
     {
         key: 'ListaCliente',
-        path: '/Lista-Cliente',
-        component: lazy(() => import('@/views/layouts/customers/CustomerList')),
+        path: '/listar-cliente',
+        component: lazy(() => import('@/views/layouts/customers/CustomerList/CustomerList')),
         authority: [],
     },
     {
@@ -48,6 +42,30 @@ export const protectedRoutes: Routes = [
         path: '/profile-page-view',
         component: lazy(() =>
             import('@/views/layouts/profilepage/Settings')
+        ),
+        authority: [],
+    },
+    {
+        key: 'agenda',
+        path: '/agendar',
+        component: lazy(() =>
+            import('@/views/layouts/Calendar/Calendar')
+        ),
+        authority: [],
+    },
+    {
+        key: 'quiropraxista',
+        path: '/quiropraxistas',
+        component: lazy(() =>
+            import('@/views/layouts/quiropraxista/quiroList/QuiroList')
+        ),
+        authority: [],
+    },
+    {
+        key: 'atendente',
+        path: '/atendente',
+        component: lazy(() =>
+            import('@/views/layouts/Atendimento/atendenteList/AtendenteList')
         ),
         authority: [],
     },
