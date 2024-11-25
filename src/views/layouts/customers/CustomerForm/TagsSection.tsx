@@ -7,15 +7,15 @@ import type { FormSectionBaseProps } from './types'
 type TagsSectionProps = FormSectionBaseProps
 
 const defaultOptions = [
-    { value: 'frequentShoppers', label: 'Frequent Shoppers' },
-    { value: 'inactiveCustomers', label: 'Inactive' },
-    { value: 'newCustomers', label: 'New' },
+    { value: 'RedeSocial', label: 'RedeSocial' },
+    { value: 'Indicação', label: 'Indicação' },
+    { value: 'Passando', label: 'Passando' },
 ]
 
 const TagsSection = ({ control }: TagsSectionProps) => {
     return (
         <Card>
-            <h4 className="mb-2">Customer Tags</h4>
+            <h4 className="mb-2">Como conheceu a clinica?</h4>
             <div className="mt-6">
                 <Controller
                     name="tags"

@@ -101,7 +101,7 @@ const navigationConfig: NavigationTree[] = [
         subMenu: [
             {
                 key: 'concepts.customers.customerList',
-                path: `/Lista-Cliente`,
+                path: `/quiropraxistas`,
                 title: 'Quiropraxista',
                 translateKey: 'nav.conceptsCustomers.customerList',
                 icon: 'customerList',
@@ -117,8 +117,8 @@ const navigationConfig: NavigationTree[] = [
                 subMenu: [],
             },
             {
-                key: 'concepts.customers.customerCreate',
-                path: `/Criar-Cliente`,
+                key: 'concepts.products.productList',
+                path: `/Planos`,
                 title: 'Planos',
                 translateKey: 'nav.conceptsCustomers.customerCreate',
                 icon: 'customerCreate',

@@ -70,10 +70,10 @@ const OverviewSection = ({ control, errors }: OverviewSectionProps) => {
 
     return (
         <Card>
-            <h4 className="mb-6">Overview</h4>
+            <h4 className="mb-6">Cadastrar Cliente</h4>
             <div className="grid md:grid-cols-2 gap-4">
                 <FormItem
-                    label="First Name"
+                    label="Nome"
                     invalid={Boolean(errors.firstName)}
                     errorMessage={errors.firstName?.message}
                 >
@@ -84,14 +84,14 @@ const OverviewSection = ({ control, errors }: OverviewSectionProps) => {
                             <Input
                                 type="text"
                                 autoComplete="off"
-                                placeholder="First Name"
+                                placeholder="Nome"
                                 {...field}
                             />
                         )}
                     />
                 </FormItem>
                 <FormItem
-                    label="User Name"
+                    label="Sobrenome"
                     invalid={Boolean(errors.lastName)}
                     errorMessage={errors.lastName?.message}
                 >
@@ -102,7 +102,7 @@ const OverviewSection = ({ control, errors }: OverviewSectionProps) => {
                             <Input
                                 type="text"
                                 autoComplete="off"
-                                placeholder="Last Name"
+                                placeholder="Sobrenome"
                                 {...field}
                             />
                         )}
@@ -133,7 +133,7 @@ const OverviewSection = ({ control, errors }: OverviewSectionProps) => {
                         Boolean(errors.phoneNumber) || Boolean(errors.dialCode)
                     }
                 >
-                    <label className="form-label mb-2">Phone number</label>
+                    <label className="form-label mb-2">Numero Celular</label>
                     <Controller
                         name="dialCode"
                         control={control}
@@ -146,7 +146,7 @@ const OverviewSection = ({ control, errors }: OverviewSectionProps) => {
                                     Option: CustomSelectOption,
                                     Control: CustomControl,
                                 }}
-                                placeholder=""
+                                placeholder="+55"
                                 value={dialCodeList.filter(
                                     (option) => option.dialCode === field.value,
                                 )}
@@ -170,7 +170,7 @@ const OverviewSection = ({ control, errors }: OverviewSectionProps) => {
                         render={({ field }) => (
                             <NumericInput
                                 autoComplete="off"
-                                placeholder="Phone Number"
+                                placeholder="Numero de Celular"
                                 value={field.value}
                                 onChange={field.onChange}
                                 onBlur={field.onBlur}

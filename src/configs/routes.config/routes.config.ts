@@ -57,7 +57,15 @@ export const protectedRoutes: Routes = [
         key: 'quiropraxista',
         path: '/quiropraxistas',
         component: lazy(() =>
-            import('@/views/layouts/quiropraxista/quiroList/QuiroList')
+            import('@/views/layouts/quiropraxista/QuiroList')
+        ),
+        authority: [],
+    },
+    {
+        key: 'Criarquiropraxista',
+        path: '/Criar-quiro',
+        component: lazy(() =>
+            import('@/views/layouts/quiropraxista/QuiroCreate')
         ),
         authority: [],
     },
@@ -66,6 +74,14 @@ export const protectedRoutes: Routes = [
         path: '/atendente',
         component: lazy(() =>
             import('@/views/layouts/Atendimento/atendenteList/AtendenteList')
+        ),
+        authority: [],
+    },
+    {
+        key: 'Planos',
+        path: '/Planos',
+        component: lazy(() =>
+            import('@/views/layouts/products/ProductList')
         ),
         authority: [],
     },

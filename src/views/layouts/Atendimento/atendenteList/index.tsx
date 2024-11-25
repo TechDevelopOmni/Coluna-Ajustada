@@ -1,3 +1,3 @@
-import CustomerList from './CustomerList'
+import CustomerList from './AtendenteList'
 
 export default CustomerList

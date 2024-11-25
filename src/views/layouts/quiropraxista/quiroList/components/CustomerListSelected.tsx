@@ -81,9 +81,9 @@ const CustomerListSelected = () => {
                                         <span className="font-semibold flex items-center gap-1">
                                             <span className="heading-text">
                                                 {selectedCustomer.length}{' '}
-                                                Customers
+                                                Quiropraxistas
                                             </span>
-                                            <span>selected</span>
+                                            <span>Selecionar</span>
                                         </span>
                                     </span>
                                 )}
@@ -99,7 +99,7 @@ const CustomerListSelected = () => {
                                     }
                                     onClick={handleDelete}
                                 >
-                                    Delete
+                                    Deletar
                                 </Button>
                                 <Button
                                     size="sm"
@@ -108,7 +108,7 @@ const CustomerListSelected = () => {
                                         setSendMessageDialogOpen(true)
                                     }
                                 >
-                                    Message
+                                    Menssagem
                                 </Button>
                             </div>
                         </div>
