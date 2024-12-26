@@ -23,7 +23,7 @@ const CustomerEdit = () => {
         await sleep(800)
         setIsSubmiting(false)
         toast.push(
-            <Notification type="success">Customer created!</Notification>,
+            <Notification type="success">Cliente Cadstrado!</Notification>,
             { placement: 'top-center' },
         )
         navigate('/concepts/customers/customer-list')
@@ -32,7 +32,7 @@ const CustomerEdit = () => {
     const handleConfirmDiscard = () => {
         setDiscardConfirmationOpen(true)
         toast.push(
-            <Notification type="success">Customer discardd!</Notification>,
+            <Notification type="success">Cliente Descartado!</Notification>,
             { placement: 'top-center' },
         )
         navigate('/concepts/customers/customer-list')
@@ -78,14 +78,14 @@ const CustomerEdit = () => {
                                 icon={<TbTrash />}
                                 onClick={handleDiscard}
                             >
-                                Discard
+                                Descartar
                             </Button>
                             <Button
                                 variant="solid"
                                 type="submit"
                                 loading={isSubmiting}
                             >
-                                Create
+                                Criar
                             </Button>
                         </div>
                     </div>
@@ -101,7 +101,7 @@ const CustomerEdit = () => {
                 onConfirm={handleConfirmDiscard}
             >
                 <p>
-                    Are you sure you want discard this? This action can&apos;t
+                    tem certeza, em descartar cliente? This action can&apos;t
                     be undo.{' '}
                 </p>
             </ConfirmDialog>

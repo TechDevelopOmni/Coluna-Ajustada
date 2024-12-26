@@ -27,7 +27,7 @@ const ProfileImage = ({ control }: ProfileImageSectionProps) => {
 
     return (
         <Card>
-            <h4 className="mb-6">Image</h4>
+            <h4 className="mb-6">Imagem</h4>
             <div className="bg-gray-100 dark:bg-gray-700 rounded-lg text-center p-4">
                 <div className="text-center">
                     <Controller
@@ -68,7 +68,7 @@ const ProfileImage = ({ control }: ProfileImageSectionProps) => {
                                         className="mt-4"
                                         type="button"
                                     >
-                                        Upload Image
+                                        Carregar Imagem
                                     </Button>
                                 </Upload>
                             </>

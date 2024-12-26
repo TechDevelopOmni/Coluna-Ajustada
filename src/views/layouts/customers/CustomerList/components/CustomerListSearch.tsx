@@ -15,7 +15,7 @@ const CustomerListSearch = forwardRef<
     return (
         <DebouceInput
             ref={ref}
-            placeholder="Quick search..."
+            placeholder="Buscar..."
             suffix={<TbSearch className="text-lg" />}
             onChange={(e) => onInputChange(e.target.value)}
         />

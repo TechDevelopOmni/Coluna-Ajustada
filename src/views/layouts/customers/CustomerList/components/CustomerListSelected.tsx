@@ -81,9 +81,9 @@ const CustomerListSelected = () => {
                                         <span className="font-semibold flex items-center gap-1">
                                             <span className="heading-text">
                                                 {selectedCustomer.length}{' '}
-                                                Customers
+                                                Cliente
                                             </span>
-                                            <span>selected</span>
+                                            <span>selecionado</span>
                                         </span>
                                     </span>
                                 )}
@@ -166,7 +166,7 @@ const CustomerListSelected = () => {
                         loading={sendMessageLoading}
                         onClick={handleSend}
                     >
-                        Send
+                        Enviar
                     </Button>
                 </div>
             </Dialog>

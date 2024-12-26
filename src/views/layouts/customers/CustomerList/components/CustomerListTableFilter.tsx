@@ -55,14 +55,14 @@ const CustomerListTableFilter = () => {
     return (
         <>
             <Button icon={<TbFilter />} onClick={() => openDialog()}>
-                Filter
+                Filtro
             </Button>
             <Dialog
                 isOpen={dialogIsOpen}
                 onClose={onDialogClose}
                 onRequestClose={onDialogClose}
             >
-                <h4 className="mb-4">Filter</h4>
+                <h4 className="mb-4">Filtro</h4>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <FormItem label="Products">
                         <Controller
@@ -104,10 +104,10 @@ const CustomerListTableFilter = () => {
                     </FormItem>
                     <div className="flex justify-end items-center gap-2 mt-4">
                         <Button type="button" onClick={() => reset()}>
-                            Reset
+                            Limpar
                         </Button>
                         <Button type="submit" variant="solid">
-                            Apply
+                            Aplicar
                         </Button>
                     </div>
                 </Form>

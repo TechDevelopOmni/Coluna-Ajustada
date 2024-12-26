@@ -1,0 +1,1 @@
+import{X as e}from"./index-C607L3NO.js";async function r(t){return e.fetchDataWithAxios({url:"/customers",method:"get",params:t})}async function a({id:t,...o}){return e.fetchDataWithAxios({url:`/customers/${t}`,method:"get",params:o})}async function i({...t}){return e.fetchDataWithAxios({url:"/customer/log",method:"get",params:t})}export{r as a,i as b,a as c};

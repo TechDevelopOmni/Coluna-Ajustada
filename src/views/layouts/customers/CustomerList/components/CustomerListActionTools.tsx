@@ -26,9 +26,9 @@ const CustomerListActionTools = () => {
             <Button
                 variant="solid"
                 icon={<TbUserPlus className="text-xl" />}
-                onClick={() => navigate('/concepts/customers/customer-create')}
+                onClick={() => navigate('/Criar-Cliente')}
             >
-                Add new
+                Add Novo
             </Button>
         </div>
     )
