@@ -7,9 +7,31 @@ export const publicRoutes: Routes = [...authRoute]
 
 export const protectedRoutes: Routes = [
     {
+        key: 'dashboard',
+        path: '/dashboard',
+        component: lazy(() => import('@/views/ai-platform/UsageDashboard')),
+        authority: [],
+    },
+    {
         key: 'home',
         path: '/home',
-        component: lazy(() => import('@/views/Home')),
+        component: lazy(() => import('@/views/ai-platform/UsageDashboard')),
+        authority: [],
+    },
+    {
+        key: 'agentConfiguration',
+        path: '/agentes',
+        component: lazy(
+            () => import('@/views/ai-platform/AgentConfiguration')
+        ),
+        authority: [],
+    },
+    {
+        key: 'triggerConfiguration',
+        path: '/gatilhos',
+        component: lazy(
+            () => import('@/views/ai-platform/TriggerConfiguration')
+        ),
         authority: [],
     },
     /** Example purpose only, please remove */
