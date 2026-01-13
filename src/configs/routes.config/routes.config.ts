@@ -27,6 +27,12 @@ export const protectedRoutes: Routes = [
         authority: [],
     },
     {
+        key: 'createAgent',
+        path: '/criaragente',
+        component: lazy(() => import('@/views/ai-platform/CreateAgent')),
+        authority: [],
+    },
+    {
         key: 'triggerConfiguration',
         path: '/gatilhos',
         component: lazy(
