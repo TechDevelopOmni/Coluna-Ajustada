@@ -22,6 +22,9 @@ type OutputChannel =
     | 'OneDrive'
     | 'Dropbox'
     | 'Arquivos internos'
+    | ''
+
+type AgentStatus = 'Ativo' | 'Inativo' | 'Programado'
 
 const inputTypes: InputType[] = [
     'WhatsApp',
@@ -46,9 +49,8 @@ const steps = ['Entrada', 'Configuração', 'Saída', 'Revisão']
 const CreateAgent: React.FC = () => {
     const [activeStep, setActiveStep] = useState<WizardStep>(0)
     const [selectedInput, setSelectedInput] = useState<InputType>('WhatsApp')
-    const [selectedOutputs, setSelectedOutputs] = useState<OutputChannel[]>([
-        'Chat',
-    ])
+    const [selectedOutput, setSelectedOutput] =
+        useState<OutputChannel>('Chat')
     const [agentName, setAgentName] = useState('')
     const [agentDescription, setAgentDescription] = useState('')
     const [agentNameTouched, setAgentNameTouched] = useState(false)
@@ -60,6 +62,7 @@ const CreateAgent: React.FC = () => {
     const [selectedTags, setSelectedTags] = useState<string[]>([])
     const [tagDraft, setTagDraft] = useState('')
     const [selectedModel, setSelectedModel] = useState('ChatGPT 4')
+    const [agentStatus, setAgentStatus] = useState<AgentStatus>('Ativo')
     const [temperature, setTemperature] = useState(0.6)
     const [accuracy, setAccuracy] = useState(0.8)
     const [speed, setSpeed] = useState(0.7)
@@ -97,12 +100,8 @@ const CreateAgent: React.FC = () => {
         )
     }
 
-    const handleOutputToggle = (channel: OutputChannel) => {
-        setSelectedOutputs((current) =>
-            current.includes(channel)
-                ? current.filter((item) => item !== channel)
-                : [...current, channel]
-        )
+    const handleOutputSelect = (channel: OutputChannel) => {
+        setSelectedOutput(channel)
     }
 
     const handleTagToggle = (tag: string) => {
@@ -404,31 +403,31 @@ const CreateAgent: React.FC = () => {
                     <div className="mt-6 grid gap-6">
                         {Object.entries(outputGroups).map(([group, channels]) => (
                             <div key={group}>
-                                <h3 className="text-sm font-semibold text-gray-700">
-                                    {group}
-                                </h3>
-                                <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                                    {channels.map((channel) => (
-                                        <button
-                                            key={channel}
-                                            type="button"
-                                            onClick={() =>
-                                                handleOutputToggle(channel)
-                                            }
-                                            className={`rounded-xl border px-4 py-6 text-center text-sm font-semibold transition ${
-                                                selectedOutputs.includes(channel)
-                                                    ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
-                                                    : 'border-gray-200 text-gray-600 hover:border-indigo-300'
-                                            }`}
-                                        >
-                                            {channel}
-                                        </button>
-                                    ))}
-                                </div>
+                            <h3 className="text-sm font-semibold text-gray-700">
+                                {group}
+                            </h3>
+                            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                                {channels.map((channel) => (
+                                    <button
+                                        key={channel}
+                                        type="button"
+                                        onClick={() =>
+                                            handleOutputSelect(channel)
+                                        }
+                                        className={`rounded-xl border px-4 py-6 text-center text-sm font-semibold transition ${
+                                            selectedOutput === channel
+                                                ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
+                                                : 'border-gray-200 text-gray-600 hover:border-indigo-300'
+                                        }`}
+                                    >
+                                        {channel}
+                                    </button>
+                                ))}
                             </div>
-                        ))}
-                    </div>
-                </section>
+                        </div>
+                    ))}
+                </div>
+            </section>
             )}
 
             {activeStep === 3 && (
@@ -487,10 +486,32 @@ const CreateAgent: React.FC = () => {
                                 Canais de saída
                             </h3>
                             <p className="mt-2 text-sm text-gray-600">
-                                {selectedOutputs.length > 0
-                                    ? selectedOutputs.join(', ')
+                                {selectedOutput
+                                    ? selectedOutput
                                     : 'Nenhum canal selecionado'}
                             </p>
+                        </div>
+                        <div className="rounded-xl border border-gray-200 p-4">
+                            <h3 className="text-sm font-semibold text-gray-700">
+                                Status do agente
+                            </h3>
+                            <p className="mt-1 text-xs text-gray-500">
+                                Defina como o agente ficará disponível após
+                                salvar.
+                            </p>
+                            <select
+                                value={agentStatus}
+                                onChange={(event) =>
+                                    setAgentStatus(
+                                        event.target.value as AgentStatus
+                                    )
+                                }
+                                className="mt-3 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                            >
+                                <option value="Ativo">Ativo</option>
+                                <option value="Inativo">Inativo</option>
+                                <option value="Programado">Programado</option>
+                            </select>
                         </div>
                         <div className="rounded-xl border border-gray-200 p-4">
                             <h3 className="text-sm font-semibold text-gray-700">
