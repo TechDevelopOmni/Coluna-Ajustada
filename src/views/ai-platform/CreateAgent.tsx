@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-type WizardStep = 0 | 1 | 2
+type WizardStep = 0 | 1 | 2 | 3
 
 type InputType =
     | 'WhatsApp'
@@ -41,7 +41,7 @@ const outputGroups = {
     Plataforma: ['Arquivos internos'] as OutputChannel[],
 }
 
-const steps = ['Entrada', 'Configuração', 'Saída']
+const steps = ['Entrada', 'Configuração', 'Saída', 'Revisão']
 
 const CreateAgent: React.FC = () => {
     const [activeStep, setActiveStep] = useState<WizardStep>(0)
@@ -53,12 +53,17 @@ const CreateAgent: React.FC = () => {
     const [accuracy, setAccuracy] = useState(0.8)
     const [speed, setSpeed] = useState(0.7)
     const [costControl, setCostControl] = useState(0.4)
+    const [knowledgeBaseEnabled, setKnowledgeBaseEnabled] = useState(true)
+    const [webAccessEnabled, setWebAccessEnabled] = useState(false)
+    const [toolExecutionEnabled, setToolExecutionEnabled] = useState(true)
+    const navigate = useNavigate()
 
     const stepDescriptions = useMemo(
         () => [
             'Selecione o tipo de entrada para iniciar o fluxo do agente.',
             'Defina o comportamento inteligente e os controles do agente.',
             'Escolha os canais de saída onde os resultados serão entregues.',
+            'Revise a configuração e confirme a criação do agente.',
         ],
         []
     )
@@ -85,6 +90,10 @@ const CreateAgent: React.FC = () => {
         )
     }
 
+    const handleSaveAgent = () => {
+        navigate('/agentes')
+    }
+
     return (
         <div className="flex flex-col gap-6">
             <header className="flex flex-col gap-2 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
@@ -97,7 +106,7 @@ const CreateAgent: React.FC = () => {
                             Criar novo agente
                         </h1>
                         <p className="mt-1 text-sm text-gray-600">
-                            Jornada guiada em três passos para configurar o
+                            Jornada guiada em quatro passos para configurar o
                             agente.
                         </p>
                     </div>
@@ -121,7 +130,7 @@ const CreateAgent: React.FC = () => {
                         >
                             <span>{step}</span>
                             <span className="text-xs text-gray-400">
-                                {index + 1}/3
+                                {index + 1}/4
                             </span>
                         </div>
                     ))}
@@ -186,14 +195,20 @@ const CreateAgent: React.FC = () => {
                             <ToggleCard
                                 label="Uso de base de conhecimento"
                                 description="Aumenta a precisão usando documentos internos."
+                                checked={knowledgeBaseEnabled}
+                                onChange={setKnowledgeBaseEnabled}
                             />
                             <ToggleCard
                                 label="Acesso à web"
                                 description="Permite buscar fontes externas."
+                                checked={webAccessEnabled}
+                                onChange={setWebAccessEnabled}
                             />
                             <ToggleCard
                                 label="Execução de ferramentas"
                                 description="Integrações e automações disponíveis."
+                                checked={toolExecutionEnabled}
+                                onChange={setToolExecutionEnabled}
                             />
                         </div>
 
@@ -259,6 +274,80 @@ const CreateAgent: React.FC = () => {
                 </section>
             )}
 
+            {activeStep === 3 && (
+                <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                    <h2 className="text-lg font-semibold text-gray-900">
+                        Revisão da configuração
+                    </h2>
+                    <p className="mt-2 text-sm text-gray-600">
+                        Verifique os detalhes selecionados antes de salvar o
+                        agente.
+                    </p>
+                    <div className="mt-6 grid gap-4 lg:grid-cols-2">
+                        <div className="rounded-xl border border-gray-200 p-4">
+                            <h3 className="text-sm font-semibold text-gray-700">
+                                Entrada selecionada
+                            </h3>
+                            <p className="mt-2 text-sm text-gray-600">
+                                {selectedInput}
+                            </p>
+                        </div>
+                        <div className="rounded-xl border border-gray-200 p-4">
+                            <h3 className="text-sm font-semibold text-gray-700">
+                                Canais de saída
+                            </h3>
+                            <p className="mt-2 text-sm text-gray-600">
+                                {selectedOutputs.length > 0
+                                    ? selectedOutputs.join(', ')
+                                    : 'Nenhum canal selecionado'}
+                            </p>
+                        </div>
+                        <div className="rounded-xl border border-gray-200 p-4">
+                            <h3 className="text-sm font-semibold text-gray-700">
+                                Recursos habilitados
+                            </h3>
+                            <ul className="mt-2 space-y-1 text-sm text-gray-600">
+                                <li>
+                                    Base de conhecimento:{' '}
+                                    {knowledgeBaseEnabled ? 'Ativa' : 'Inativa'}
+                                </li>
+                                <li>
+                                    Acesso à web:{' '}
+                                    {webAccessEnabled ? 'Ativo' : 'Inativo'}
+                                </li>
+                                <li>
+                                    Execução de ferramentas:{' '}
+                                    {toolExecutionEnabled ? 'Ativa' : 'Inativa'}
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="rounded-xl border border-gray-200 p-4">
+                            <h3 className="text-sm font-semibold text-gray-700">
+                                Ajustes do agente
+                            </h3>
+                            <ul className="mt-2 space-y-1 text-sm text-gray-600">
+                                <li>
+                                    Criatividade:{' '}
+                                    {(temperature * 100).toFixed(0)}%
+                                </li>
+                                <li>
+                                    Precisão:{' '}
+                                    {(accuracy * 100).toFixed(0)}%
+                                </li>
+                                <li>
+                                    Velocidade:{' '}
+                                    {(speed * 100).toFixed(0)}%
+                                </li>
+                                <li>
+                                    Controle de custo:{' '}
+                                    {(costControl * 100).toFixed(0)}%
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            )}
+
             <footer className="flex flex-wrap items-center justify-end gap-3">
                 <Link
                     to="/agentes"
@@ -278,10 +367,19 @@ const CreateAgent: React.FC = () => {
                     type="button"
                     onClick={handleNextStep}
                     className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700"
-                    disabled={activeStep === 2}
+                    disabled={activeStep === 3}
                 >
                     Avançar
                 </button>
+                {activeStep === 3 && (
+                    <button
+                        type="button"
+                        onClick={handleSaveAgent}
+                        className="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                    >
+                        Salvar agente
+                    </button>
+                )}
             </footer>
         </div>
     )
@@ -290,13 +388,25 @@ const CreateAgent: React.FC = () => {
 type ToggleCardProps = {
     label: string
     description: string
+    checked: boolean
+    onChange: (checked: boolean) => void
 }
 
-const ToggleCard = ({ label, description }: ToggleCardProps) => {
+const ToggleCard = ({
+    label,
+    description,
+    checked,
+    onChange,
+}: ToggleCardProps) => {
     return (
         <div className="rounded-xl border border-gray-200 px-4 py-3 text-left text-sm text-gray-600">
             <div className="flex items-center gap-2">
-                <input type="checkbox" className="h-4 w-4" />
+                <input
+                    type="checkbox"
+                    className="h-4 w-4"
+                    checked={checked}
+                    onChange={(event) => onChange(event.target.checked)}
+                />
                 <span className="font-semibold text-gray-700">{label}</span>
             </div>
             <p className="mt-2 text-xs text-gray-500">{description}</p>
