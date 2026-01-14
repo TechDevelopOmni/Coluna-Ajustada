@@ -51,6 +51,7 @@ const CreateAgent: React.FC = () => {
     ])
     const [agentName, setAgentName] = useState('')
     const [agentDescription, setAgentDescription] = useState('')
+    const [agentNameTouched, setAgentNameTouched] = useState(false)
     const [availableTags, setAvailableTags] = useState<string[]>([
         'Suporte',
         'Financeiro',
@@ -58,6 +59,7 @@ const CreateAgent: React.FC = () => {
     ])
     const [selectedTags, setSelectedTags] = useState<string[]>([])
     const [tagDraft, setTagDraft] = useState('')
+    const [selectedModel, setSelectedModel] = useState('ChatGPT 4')
     const [temperature, setTemperature] = useState(0.6)
     const [accuracy, setAccuracy] = useState(0.8)
     const [speed, setSpeed] = useState(0.7)
@@ -78,6 +80,10 @@ const CreateAgent: React.FC = () => {
     )
 
     const handleNextStep = () => {
+        if (activeStep === 1 && agentName.trim().length === 0) {
+            setAgentNameTouched(true)
+            return
+        }
         setActiveStep((current) =>
             current < steps.length - 1
                 ? ((current + 1) as WizardStep)
@@ -215,9 +221,16 @@ const CreateAgent: React.FC = () => {
                                     onChange={(event) =>
                                         setAgentName(event.target.value)
                                     }
+                                    onBlur={() => setAgentNameTouched(true)}
                                     className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
                                     placeholder="Ex.: Assistente de Suporte"
+                                    required
                                 />
+                                {agentNameTouched && agentName.trim().length === 0 && (
+                                    <span className="text-xs font-medium text-rose-500">
+                                        Informe o nome do agente para continuar.
+                                    </span>
+                                )}
                             </label>
                             <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
                                 Descrição
@@ -290,6 +303,23 @@ const CreateAgent: React.FC = () => {
                                 />
                             </label>
                             <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
+                                Modelo de LLM
+                                <select
+                                    value={selectedModel}
+                                    onChange={(event) =>
+                                        setSelectedModel(event.target.value)
+                                    }
+                                    className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                >
+                                    <option value="ChatGPT 3.5">
+                                        ChatGPT 3.5
+                                    </option>
+                                    <option value="ChatGPT 4">ChatGPT 4</option>
+                                    <option value="Claude">Claude</option>
+                                    <option value="Grok">Grok</option>
+                                </select>
+                            </label>
+                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
                                 Regras adicionais
                                 <textarea
                                     className="min-h-[90px] rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
@@ -317,6 +347,26 @@ const CreateAgent: React.FC = () => {
                                     onChange={setToolExecutionEnabled}
                                 />
                             </div>
+
+                            {knowledgeBaseEnabled && (
+                                <div className="rounded-xl border border-gray-200 p-4">
+                                    <h3 className="text-sm font-semibold text-gray-700">
+                                        Base de conhecimento
+                                    </h3>
+                                    <p className="mt-1 text-xs text-gray-500">
+                                        Anexe arquivos para treinar o agente com
+                                        conteúdo interno.
+                                    </p>
+                                    <label className="mt-4 flex flex-col gap-2 text-sm font-medium text-gray-700">
+                                        Arquivos
+                                        <input
+                                            type="file"
+                                            multiple
+                                            className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                        />
+                                    </label>
+                                </div>
+                            )}
 
                             <div className="grid gap-4 lg:grid-cols-2">
                                 <SliderControl
@@ -423,6 +473,14 @@ const CreateAgent: React.FC = () => {
                                         : 'Nenhuma tag selecionada'}
                                 </p>
                             </div>
+                        </div>
+                        <div className="rounded-xl border border-gray-200 p-4">
+                            <h3 className="text-sm font-semibold text-gray-700">
+                                Modelo selecionado
+                            </h3>
+                            <p className="mt-2 text-sm text-gray-600">
+                                {selectedModel}
+                            </p>
                         </div>
                         <div className="rounded-xl border border-gray-200 p-4">
                             <h3 className="text-sm font-semibold text-gray-700">
