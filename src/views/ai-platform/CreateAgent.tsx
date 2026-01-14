@@ -49,6 +49,15 @@ const CreateAgent: React.FC = () => {
     const [selectedOutputs, setSelectedOutputs] = useState<OutputChannel[]>([
         'Chat',
     ])
+    const [agentName, setAgentName] = useState('')
+    const [agentDescription, setAgentDescription] = useState('')
+    const [availableTags, setAvailableTags] = useState<string[]>([
+        'Suporte',
+        'Financeiro',
+        'Vendas',
+    ])
+    const [selectedTags, setSelectedTags] = useState<string[]>([])
+    const [tagDraft, setTagDraft] = useState('')
     const [temperature, setTemperature] = useState(0.6)
     const [accuracy, setAccuracy] = useState(0.8)
     const [speed, setSpeed] = useState(0.7)
@@ -88,6 +97,28 @@ const CreateAgent: React.FC = () => {
                 ? current.filter((item) => item !== channel)
                 : [...current, channel]
         )
+    }
+
+    const handleTagToggle = (tag: string) => {
+        setSelectedTags((current) =>
+            current.includes(tag)
+                ? current.filter((item) => item !== tag)
+                : [...current, tag]
+        )
+    }
+
+    const handleAddTag = () => {
+        const nextTag = tagDraft.trim()
+        if (!nextTag) {
+            return
+        }
+        setAvailableTags((current) =>
+            current.includes(nextTag) ? current : [...current, nextTag]
+        )
+        setSelectedTags((current) =>
+            current.includes(nextTag) ? current : [...current, nextTag]
+        )
+        setTagDraft('')
     }
 
     const handleSaveAgent = () => {
@@ -168,74 +199,150 @@ const CreateAgent: React.FC = () => {
             )}
 
             {activeStep === 1 && (
-                <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                    <h2 className="text-lg font-semibold text-gray-900">
-                        Processamento
-                    </h2>
-                    <p className="mt-2 text-sm text-gray-600">
-                        Defina o comportamento do agente antes de continuar.
-                    </p>
-                    <div className="mt-6 grid gap-4">
-                        <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
-                            Prompt principal
-                            <textarea
-                                className="min-h-[120px] rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
-                                placeholder="Ex.: Você é um agente especialista em suporte..."
-                            />
-                        </label>
-                        <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
-                            Regras adicionais
-                            <textarea
-                                className="min-h-[90px] rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
-                                placeholder="Ex.: Responda de forma objetiva e registre logs."
-                            />
-                        </label>
-
-                        <div className="grid gap-3 md:grid-cols-3">
-                            <ToggleCard
-                                label="Uso de base de conhecimento"
-                                description="Aumenta a precisão usando documentos internos."
-                                checked={knowledgeBaseEnabled}
-                                onChange={setKnowledgeBaseEnabled}
-                            />
-                            <ToggleCard
-                                label="Acesso à web"
-                                description="Permite buscar fontes externas."
-                                checked={webAccessEnabled}
-                                onChange={setWebAccessEnabled}
-                            />
-                            <ToggleCard
-                                label="Execução de ferramentas"
-                                description="Integrações e automações disponíveis."
-                                checked={toolExecutionEnabled}
-                                onChange={setToolExecutionEnabled}
-                            />
+                <div className="grid gap-6">
+                    <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                        <h2 className="text-lg font-semibold text-gray-900">
+                            Identidade do agente
+                        </h2>
+                        <p className="mt-2 text-sm text-gray-600">
+                            Defina o nome, a descrição e as tags principais.
+                        </p>
+                        <div className="mt-6 grid gap-4">
+                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
+                                Nome do agente
+                                <input
+                                    value={agentName}
+                                    onChange={(event) =>
+                                        setAgentName(event.target.value)
+                                    }
+                                    className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                    placeholder="Ex.: Assistente de Suporte"
+                                />
+                            </label>
+                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
+                                Descrição
+                                <textarea
+                                    value={agentDescription}
+                                    onChange={(event) =>
+                                        setAgentDescription(event.target.value)
+                                    }
+                                    className="min-h-[90px] rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                    placeholder="Descreva o foco e o objetivo do agente."
+                                />
+                            </label>
+                            <div className="grid gap-3">
+                                <div className="flex flex-wrap gap-2">
+                                    {availableTags.map((tag) => (
+                                        <button
+                                            key={tag}
+                                            type="button"
+                                            onClick={() => handleTagToggle(tag)}
+                                            className={`rounded-full border px-3 py-1 text-xs font-semibold transition ${
+                                                selectedTags.includes(tag)
+                                                    ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
+                                                    : 'border-gray-200 text-gray-600 hover:border-indigo-300'
+                                            }`}
+                                        >
+                                            {tag}
+                                        </button>
+                                    ))}
+                                </div>
+                                <div className="flex flex-wrap gap-2">
+                                    <input
+                                        value={tagDraft}
+                                        onChange={(event) =>
+                                            setTagDraft(event.target.value)
+                                        }
+                                        className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                        placeholder="Digite uma tag e pressione adicionar"
+                                        onKeyDown={(event) => {
+                                            if (event.key === 'Enter') {
+                                                event.preventDefault()
+                                                handleAddTag()
+                                            }
+                                        }}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={handleAddTag}
+                                        className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700"
+                                    >
+                                        Adicionar tag
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+                    </section>
 
-                        <div className="grid gap-4 lg:grid-cols-2">
-                            <SliderControl
-                                label="Criatividade"
-                                value={temperature}
-                                onChange={setTemperature}
-                            />
-                            <SliderControl
-                                label="Precisão"
-                                value={accuracy}
-                                onChange={setAccuracy}
-                            />
-                            <SliderControl
-                                label="Velocidade"
-                                value={speed}
-                                onChange={setSpeed}
-                            />
-                            <SliderControl
-                                label="Controle de custo"
-                                value={costControl}
-                                onChange={setCostControl}
-                            />
+                    <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                        <h2 className="text-lg font-semibold text-gray-900">
+                            Processamento
+                        </h2>
+                        <p className="mt-2 text-sm text-gray-600">
+                            Defina o comportamento do agente antes de continuar.
+                        </p>
+                        <div className="mt-6 grid gap-4">
+                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
+                                Prompt principal
+                                <textarea
+                                    className="min-h-[120px] rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                    placeholder="Ex.: Você é um agente especialista em suporte..."
+                                />
+                            </label>
+                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
+                                Regras adicionais
+                                <textarea
+                                    className="min-h-[90px] rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                    placeholder="Ex.: Responda de forma objetiva e registre logs."
+                                />
+                            </label>
+
+                            <div className="grid gap-3 md:grid-cols-3">
+                                <ToggleCard
+                                    label="Uso de base de conhecimento"
+                                    description="Aumenta a precisão usando documentos internos."
+                                    checked={knowledgeBaseEnabled}
+                                    onChange={setKnowledgeBaseEnabled}
+                                />
+                                <ToggleCard
+                                    label="Acesso à web"
+                                    description="Permite buscar fontes externas."
+                                    checked={webAccessEnabled}
+                                    onChange={setWebAccessEnabled}
+                                />
+                                <ToggleCard
+                                    label="Execução de ferramentas"
+                                    description="Integrações e automações disponíveis."
+                                    checked={toolExecutionEnabled}
+                                    onChange={setToolExecutionEnabled}
+                                />
+                            </div>
+
+                            <div className="grid gap-4 lg:grid-cols-2">
+                                <SliderControl
+                                    label="Criatividade"
+                                    value={temperature}
+                                    onChange={setTemperature}
+                                />
+                                <SliderControl
+                                    label="Precisão"
+                                    value={accuracy}
+                                    onChange={setAccuracy}
+                                />
+                                <SliderControl
+                                    label="Velocidade"
+                                    value={speed}
+                                    onChange={setSpeed}
+                                />
+                                <SliderControl
+                                    label="Controle de custo"
+                                    value={costControl}
+                                    onChange={setCostControl}
+                                />
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
             )}
 
             {activeStep === 2 && (
@@ -291,6 +398,31 @@ const CreateAgent: React.FC = () => {
                             <p className="mt-2 text-sm text-gray-600">
                                 {selectedInput}
                             </p>
+                        </div>
+                        <div className="rounded-xl border border-gray-200 p-4">
+                            <h3 className="text-sm font-semibold text-gray-700">
+                                Identidade do agente
+                            </h3>
+                            <div className="mt-2 space-y-1 text-sm text-gray-600">
+                                <p>
+                                    Nome:{' '}
+                                    {agentName
+                                        ? agentName
+                                        : 'Não informado'}
+                                </p>
+                                <p>
+                                    Descrição:{' '}
+                                    {agentDescription
+                                        ? agentDescription
+                                        : 'Não informada'}
+                                </p>
+                                <p>
+                                    Tags:{' '}
+                                    {selectedTags.length > 0
+                                        ? selectedTags.join(', ')
+                                        : 'Nenhuma tag selecionada'}
+                                </p>
+                            </div>
                         </div>
                         <div className="rounded-xl border border-gray-200 p-4">
                             <h3 className="text-sm font-semibold text-gray-700">
