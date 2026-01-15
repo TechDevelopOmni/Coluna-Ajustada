@@ -19,6 +19,12 @@ export const protectedRoutes: Routes = [
         authority: [],
     },
     {
+        key: 'arquivos',
+        path: '/Arquivos',
+        component: lazy(() => import('@/views/Arquivos')),
+        authority: [],
+    },
+    {
         key: 'agentConfiguration',
         path: '/agentes',
         component: lazy(
