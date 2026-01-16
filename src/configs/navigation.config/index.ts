@@ -1,7 +1,8 @@
 import {
     NAV_ITEM_TYPE_TITLE,
     NAV_ITEM_TYPE_ITEM,
-    NAV_ITEM_TYPE_COLLAPSE
+    NAV_ITEM_TYPE_COLLAPSE,
+    NAV_ITEM_TYPE_DIVIDER
 } from '@/constants/navigation.constant'
 
 import type { NavigationTree } from '@/@types/navigation'
@@ -22,7 +23,7 @@ const navigationConfig: NavigationTree[] = [
         path: '',
         title: 'Studio IA',
         translateKey: 'nav.aiPlatform',
-        icon: 'pi',
+        icon: 'groupMenu',
         type: NAV_ITEM_TYPE_COLLAPSE,
         authority: [],
         subMenu: [
@@ -55,6 +56,16 @@ const navigationConfig: NavigationTree[] = [
         translateKey: 'nav.files',
         icon: 'files',
         type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [],
+    },
+    {
+        key: 'divider.after-files',
+        path: '',
+        title: '',
+        translateKey: '',
+        icon: '',
+        type: NAV_ITEM_TYPE_DIVIDER,
         authority: [],
         subMenu: [],
     },
