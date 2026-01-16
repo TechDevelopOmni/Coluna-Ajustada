@@ -37,16 +37,6 @@ const navigationConfig: NavigationTree[] = [
         authority: [],
         subMenu: [
             {
-                key: 'ai-platform.dashboard',
-                path: '/dashboard',
-                title: 'Dashboard',
-                translateKey: 'nav.aiPlatform.dashboard',
-                icon: 'home',
-                type: NAV_ITEM_TYPE_ITEM,
-                authority: [],
-                subMenu: [],
-            },
-            {
                 key: 'ai-platform.agents',
                 path: '/agentes',
                 title: 'Agentes',
