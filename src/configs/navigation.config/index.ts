@@ -20,7 +20,7 @@ const navigationConfig: NavigationTree[] = [
     {
         key: 'ai-platform',
         path: '',
-        title: 'Plataforma IA',
+        title: 'Studio IA',
         translateKey: 'nav.aiPlatform',
         icon: 'pi',
         type: NAV_ITEM_TYPE_COLLAPSE,
