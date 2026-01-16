@@ -18,16 +18,6 @@ const navigationConfig: NavigationTree[] = [
         subMenu: [],
     },
     {
-        key: 'arquivos',
-        path: '/Arquivos',
-        title: 'Arquivos',
-        translateKey: 'nav.files',
-        icon: 'files',
-        type: NAV_ITEM_TYPE_ITEM,
-        authority: [],
-        subMenu: [],
-    },
-    {
         key: 'ai-platform',
         path: '',
         title: 'Plataforma IA',
@@ -57,6 +47,16 @@ const navigationConfig: NavigationTree[] = [
                 subMenu: [],
             },
         ],
+    },
+    {
+        key: 'arquivos',
+        path: '/Arquivos',
+        title: 'Arquivos',
+        translateKey: 'nav.files',
+        icon: 'files',
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [],
     },
 ]
 
