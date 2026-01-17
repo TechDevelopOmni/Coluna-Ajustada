@@ -16,11 +16,11 @@ const defaultTheme: ThemeVariables = {
         neutral: '#ffffff',
     },
     dark: {
-        primary: '#2a85ff',
-        primaryDeep: '#0069f6',
-        primaryMild: '#4996ff',
-        primarySubtle: '#2a85ff1a',
-        neutral: '#ffffff',
+        primary: '#60a5fa',
+        primaryDeep: '#3b82f6',
+        primaryMild: '#93c5fd',
+        primarySubtle: '#60a5fa1a',
+        neutral: '#0b1120',
     },
 }
 
