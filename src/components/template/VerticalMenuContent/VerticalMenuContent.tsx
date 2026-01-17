@@ -7,6 +7,7 @@ import {
     NAV_ITEM_TYPE_TITLE,
     NAV_ITEM_TYPE_COLLAPSE,
     NAV_ITEM_TYPE_ITEM,
+    NAV_ITEM_TYPE_DIVIDER,
 } from '@/constants/navigation.constant'
 import useMenuActive from '@/utils/hooks/useMenuActive'
 import useTranslation from '@/utils/hooks/useTranslation'
@@ -117,6 +118,12 @@ const VerticalMenuContent = (props: VerticalMenuContentProps) => {
                                         false,
                                     )}
                             </MenuGroup>
+                        )}
+                        {nav.type === NAV_ITEM_TYPE_DIVIDER && (
+                            <div
+                                key={nav.key}
+                                className="menu-item-divider"
+                            />
                         )}
                     </Fragment>
                 ))}
