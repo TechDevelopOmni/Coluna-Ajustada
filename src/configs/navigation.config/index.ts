@@ -1,7 +1,8 @@
 import {
     NAV_ITEM_TYPE_TITLE,
     NAV_ITEM_TYPE_ITEM,
-    NAV_ITEM_TYPE_COLLAPSE
+    NAV_ITEM_TYPE_COLLAPSE,
+    NAV_ITEM_TYPE_DIVIDER
 } from '@/constants/navigation.constant'
 
 import type { NavigationTree } from '@/@types/navigation'
@@ -20,22 +21,12 @@ const navigationConfig: NavigationTree[] = [
     {
         key: 'ai-platform',
         path: '',
-        title: 'Plataforma IA',
+        title: 'Studio IA',
         translateKey: 'nav.aiPlatform',
-        icon: 'pi',
+        icon: 'groupMenu',
         type: NAV_ITEM_TYPE_COLLAPSE,
         authority: [],
         subMenu: [
-            {
-                key: 'ai-platform.dashboard',
-                path: '/dashboard',
-                title: 'Dashboard',
-                translateKey: 'nav.aiPlatform.dashboard',
-                icon: 'home',
-                type: NAV_ITEM_TYPE_ITEM,
-                authority: [],
-                subMenu: [],
-            },
             {
                 key: 'ai-platform.agents',
                 path: '/agentes',
@@ -59,106 +50,24 @@ const navigationConfig: NavigationTree[] = [
         ],
     },
     {
-        key: 'concepts.customers',
-        path: '',
-        title: 'CRM',
-        translateKey: 'nav.conceptsCustomers.customers',
-        icon: 'pi',
-        type: NAV_ITEM_TYPE_COLLAPSE,
+        key: 'arquivos',
+        path: '/Arquivos',
+        title: 'Arquivos',
+        translateKey: 'nav.files',
+        icon: 'files',
+        type: NAV_ITEM_TYPE_ITEM,
         authority: [],
-        meta: {
-            description: {
-                translateKey: 'nav.conceptsCustomers.customersDesc',
-                label: 'Customer management',
-            },
-        },
-        subMenu: [
-            {
-                key: 'concepts.customers.customerList',
-                path: `/Lista-Cliente`,
-                title: 'Lista',
-                translateKey: 'nav.conceptsCustomers.customerList',
-                icon: 'customerList',
-                type: NAV_ITEM_TYPE_ITEM,
-                authority: [],
-                meta: {
-                    description: {
-                        translateKey:
-                            'nav.conceptsCustomers.customerListDesc',
-                        label: 'List of all customers',
-                    },
-                },
-                subMenu: [],
-            },
-            {
-                key: 'concepts.customers.customerCreate',
-                path: `/Criar-Cliente`,
-                title: 'Criar',
-                translateKey: 'nav.conceptsCustomers.customerCreate',
-                icon: 'customerCreate',
-                type: NAV_ITEM_TYPE_ITEM,
-                authority: [],
-                meta: {
-                    description: {
-                        translateKey:
-                            'nav.conceptsCustomers.customerEditDesc',
-                        label: 'Edit customer info',
-                    },
-                },
-                subMenu: [],
-            },
-        ],
+        subMenu: [],
     },
     {
-        key: 'concepts.customers',
+        key: 'divider.after-files',
         path: '',
-        title: 'Quiropraxista',
-        translateKey: 'nav.conceptsCustomers.customers',
-        icon: 'pi',
-        type: NAV_ITEM_TYPE_COLLAPSE,
+        title: '',
+        translateKey: '',
+        icon: '',
+        type: NAV_ITEM_TYPE_DIVIDER,
         authority: [],
-        meta: {
-            description: {
-                translateKey: 'nav.conceptsCustomers.customersDesc',
-                label: 'Customer management',
-            },
-        },
-        subMenu: [
-            {
-                key: 'concepts.customers.customerList',
-                path: `/Lista-Cliente`,
-                title: 'Lista',
-                translateKey: 'nav.conceptsCustomers.customerList',
-                icon: 'customerList',
-                type: NAV_ITEM_TYPE_ITEM,
-                authority: [],
-                meta: {
-                    description: {
-                        translateKey:
-                            'nav.conceptsCustomers.customerListDesc',
-                        label: 'List of all customers',
-                    },
-                },
-                subMenu: [],
-            },
-            {
-                key: 'concepts.customers.customerCreate',
-                path: `/Criar-Cliente`,
-                title: 'Criar',
-                translateKey: 'nav.conceptsCustomers.customerCreate',
-                icon: 'customerCreate',
-                type: NAV_ITEM_TYPE_ITEM,
-                authority: [],
-                meta: {
-                    description: {
-                        translateKey:
-                            'nav.conceptsCustomers.customerEditDesc',
-                        label: 'Edit customer info',
-                    },
-                },
-                subMenu: [],
-            },
-        ],
+        subMenu: [],
     },
 ]
 
