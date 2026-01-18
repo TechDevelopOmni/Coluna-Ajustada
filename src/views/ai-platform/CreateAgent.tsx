@@ -132,23 +132,23 @@ const CreateAgent: React.FC = () => {
 
     return (
         <div className="flex flex-col gap-6">
-            <header className="flex flex-col gap-2 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+            <header className="flex flex-col gap-2 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
                 <div className="flex flex-wrap items-center justify-between gap-4">
                     <div>
-                        <p className="text-xs font-semibold uppercase text-indigo-500">
+                        <p className="text-xs font-semibold uppercase text-indigo-500 dark:text-indigo-300">
                             OmniStudio
                         </p>
-                        <h1 className="text-2xl font-semibold text-gray-900">
+                        <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
                             Criar novo agente
                         </h1>
-                        <p className="mt-1 text-sm text-gray-600">
+                        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
                             Jornada guiada em quatro passos para configurar o
                             agente.
                         </p>
                     </div>
                     <Link
                         to="/agentes"
-                        className="inline-flex items-center justify-center rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition hover:border-indigo-300"
+                        className="inline-flex items-center justify-center rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition hover:border-indigo-300 dark:border-gray-700 dark:text-gray-300 dark:hover:border-indigo-400"
                     >
                         Voltar para agentes
                     </Link>
@@ -160,28 +160,28 @@ const CreateAgent: React.FC = () => {
                             key={step}
                             className={`flex min-w-[180px] flex-1 items-center justify-between rounded-xl border px-4 py-3 text-left text-sm font-medium ${
                                 activeStep === index
-                                    ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
-                                    : 'border-gray-200 text-gray-600'
+                                    ? 'border-indigo-500 bg-indigo-50 text-indigo-700 dark:border-indigo-400 dark:bg-indigo-500/10 dark:text-indigo-200'
+                                    : 'border-gray-200 text-gray-600 dark:border-gray-800 dark:text-gray-300'
                             }`}
                         >
                             <span>{step}</span>
-                            <span className="text-xs text-gray-400">
+                            <span className="text-xs text-gray-400 dark:text-gray-500">
                                 {index + 1}/4
                             </span>
                         </div>
                     ))}
                 </div>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-500 dark:text-gray-400">
                     {stepDescriptions[activeStep]}
                 </p>
             </header>
 
             {activeStep === 0 && (
-                <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                    <h2 className="text-lg font-semibold text-gray-900">
+                <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                         Entrada
                     </h2>
-                    <p className="mt-2 text-sm text-gray-600">
+                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                         Escolha o tipo de entrada que dará início ao agente.
                     </p>
                     <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -192,8 +192,8 @@ const CreateAgent: React.FC = () => {
                                 onClick={() => setSelectedInput(type)}
                                 className={`rounded-xl border px-4 py-6 text-center text-sm font-semibold transition ${
                                     selectedInput === type
-                                        ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
-                                        : 'border-gray-200 text-gray-600 hover:border-indigo-300'
+                                        ? 'border-indigo-500 bg-indigo-50 text-indigo-700 dark:border-indigo-400 dark:bg-indigo-500/10 dark:text-indigo-200'
+                                        : 'border-gray-200 text-gray-600 hover:border-indigo-300 dark:border-gray-800 dark:text-gray-300 dark:hover:border-indigo-400'
                                 }`}
                             >
                                 {type}
@@ -205,15 +205,15 @@ const CreateAgent: React.FC = () => {
 
             {activeStep === 1 && (
                 <div className="grid gap-6">
-                    <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                        <h2 className="text-lg font-semibold text-gray-900">
+                    <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+                        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                             Identidade do agente
                         </h2>
-                        <p className="mt-2 text-sm text-gray-600">
+                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                             Defina o nome, a descrição e as tags principais.
                         </p>
                         <div className="mt-6 grid gap-4">
-                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
+                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Nome do agente
                                 <input
                                     value={agentName}
@@ -221,24 +221,24 @@ const CreateAgent: React.FC = () => {
                                         setAgentName(event.target.value)
                                     }
                                     onBlur={() => setAgentNameTouched(true)}
-                                    className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                    className="rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none dark:border-gray-700 dark:text-gray-100"
                                     placeholder="Ex.: Assistente de Suporte"
                                     required
                                 />
                                 {agentNameTouched && agentName.trim().length === 0 && (
-                                    <span className="text-xs font-medium text-rose-500">
+                                    <span className="text-xs font-medium text-rose-500 dark:text-rose-300">
                                         Informe o nome do agente para continuar.
                                     </span>
                                 )}
                             </label>
-                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
+                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Descrição
                                 <textarea
                                     value={agentDescription}
                                     onChange={(event) =>
                                         setAgentDescription(event.target.value)
                                     }
-                                    className="min-h-[90px] rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                    className="min-h-[90px] rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none dark:border-gray-700 dark:text-gray-100"
                                     placeholder="Descreva o foco e o objetivo do agente."
                                 />
                             </label>
@@ -251,8 +251,8 @@ const CreateAgent: React.FC = () => {
                                             onClick={() => handleTagToggle(tag)}
                                             className={`rounded-full border px-3 py-1 text-xs font-semibold transition ${
                                                 selectedTags.includes(tag)
-                                                    ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
-                                                    : 'border-gray-200 text-gray-600 hover:border-indigo-300'
+                                                    ? 'border-indigo-500 bg-indigo-50 text-indigo-700 dark:border-indigo-400 dark:bg-indigo-500/10 dark:text-indigo-200'
+                                                    : 'border-gray-200 text-gray-600 hover:border-indigo-300 dark:border-gray-800 dark:text-gray-300 dark:hover:border-indigo-400'
                                             }`}
                                         >
                                             {tag}
@@ -265,7 +265,7 @@ const CreateAgent: React.FC = () => {
                                         onChange={(event) =>
                                             setTagDraft(event.target.value)
                                         }
-                                        className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                        className="flex-1 rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none dark:border-gray-700 dark:text-gray-100"
                                         placeholder="Digite uma tag e pressione adicionar"
                                         onKeyDown={(event) => {
                                             if (event.key === 'Enter') {
@@ -277,7 +277,7 @@ const CreateAgent: React.FC = () => {
                                     <button
                                         type="button"
                                         onClick={handleAddTag}
-                                        className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700"
+                                        className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400"
                                     >
                                         Adicionar tag
                                     </button>
@@ -286,29 +286,29 @@ const CreateAgent: React.FC = () => {
                         </div>
                     </section>
 
-                    <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                        <h2 className="text-lg font-semibold text-gray-900">
+                    <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+                        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                             Processamento
                         </h2>
-                        <p className="mt-2 text-sm text-gray-600">
+                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                             Defina o comportamento do agente antes de continuar.
                         </p>
                         <div className="mt-6 grid gap-4">
-                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
+                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Prompt principal
                                 <textarea
-                                    className="min-h-[120px] rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                    className="min-h-[120px] rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none dark:border-gray-700 dark:text-gray-100"
                                     placeholder="Ex.: Você é um agente especialista em suporte..."
                                 />
                             </label>
-                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
+                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Modelo de LLM
                                 <select
                                     value={selectedModel}
                                     onChange={(event) =>
                                         setSelectedModel(event.target.value)
                                     }
-                                    className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                    className="rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none dark:border-gray-700 dark:text-gray-100"
                                 >
                                     <option value="ChatGPT 3.5">
                                         ChatGPT 3.5
@@ -318,10 +318,10 @@ const CreateAgent: React.FC = () => {
                                     <option value="Grok">Grok</option>
                                 </select>
                             </label>
-                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
+                            <label className="flex flex-col gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Regras adicionais
                                 <textarea
-                                    className="min-h-[90px] rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                    className="min-h-[90px] rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none dark:border-gray-700 dark:text-gray-100"
                                     placeholder="Ex.: Responda de forma objetiva e registre logs."
                                 />
                             </label>
@@ -348,20 +348,20 @@ const CreateAgent: React.FC = () => {
                             </div>
 
                             {knowledgeBaseEnabled && (
-                                <div className="rounded-xl border border-gray-200 p-4">
-                                    <h3 className="text-sm font-semibold text-gray-700">
+                                <div className="rounded-xl border border-gray-200 p-4 dark:border-gray-800 dark:bg-gray-950">
+                                    <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                                         Base de conhecimento
                                     </h3>
-                                    <p className="mt-1 text-xs text-gray-500">
+                                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                                         Anexe arquivos para treinar o agente com
                                         conteúdo interno.
                                     </p>
-                                    <label className="mt-4 flex flex-col gap-2 text-sm font-medium text-gray-700">
+                                    <label className="mt-4 flex flex-col gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                                         Arquivos
                                         <input
                                             type="file"
                                             multiple
-                                            className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                            className="rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none dark:border-gray-700 dark:text-gray-100"
                                         />
                                     </label>
                                 </div>
@@ -395,64 +395,66 @@ const CreateAgent: React.FC = () => {
             )}
 
             {activeStep === 2 && (
-                <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                    <h2 className="text-lg font-semibold text-gray-900">Saída</h2>
-                    <p className="mt-2 text-sm text-gray-600">
+                <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Saída
+                    </h2>
+                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                         Selecione os canais de saída para entregar os resultados.
                     </p>
                     <div className="mt-6 grid gap-6">
                         {Object.entries(outputGroups).map(([group, channels]) => (
                             <div key={group}>
-                            <h3 className="text-sm font-semibold text-gray-700">
-                                {group}
-                            </h3>
-                            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                                {channels.map((channel) => (
-                                    <button
-                                        key={channel}
-                                        type="button"
-                                        onClick={() =>
-                                            handleOutputSelect(channel)
-                                        }
-                                        className={`rounded-xl border px-4 py-6 text-center text-sm font-semibold transition ${
-                                            selectedOutput === channel
-                                                ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
-                                                : 'border-gray-200 text-gray-600 hover:border-indigo-300'
-                                        }`}
-                                    >
-                                        {channel}
-                                    </button>
-                                ))}
+                                <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                    {group}
+                                </h3>
+                                <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                                    {channels.map((channel) => (
+                                        <button
+                                            key={channel}
+                                            type="button"
+                                            onClick={() =>
+                                                handleOutputSelect(channel)
+                                            }
+                                            className={`rounded-xl border px-4 py-6 text-center text-sm font-semibold transition ${
+                                                selectedOutput === channel
+                                                    ? 'border-indigo-500 bg-indigo-50 text-indigo-700 dark:border-indigo-400 dark:bg-indigo-500/10 dark:text-indigo-200'
+                                                    : 'border-gray-200 text-gray-600 hover:border-indigo-300 dark:border-gray-800 dark:text-gray-300 dark:hover:border-indigo-400'
+                                            }`}
+                                        >
+                                            {channel}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
+                        ))}
+                    </div>
+                </section>
             )}
 
             {activeStep === 3 && (
-                <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                    <h2 className="text-lg font-semibold text-gray-900">
+                <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                         Revisão da configuração
                     </h2>
-                    <p className="mt-2 text-sm text-gray-600">
+                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                         Verifique os detalhes selecionados antes de salvar o
                         agente.
                     </p>
                     <div className="mt-6 grid gap-4 lg:grid-cols-2">
-                        <div className="rounded-xl border border-gray-200 p-4">
-                            <h3 className="text-sm font-semibold text-gray-700">
+                        <div className="rounded-xl border border-gray-200 p-4 dark:border-gray-800 dark:bg-gray-950">
+                            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                                 Entrada selecionada
                             </h3>
-                            <p className="mt-2 text-sm text-gray-600">
+                            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
                                 {selectedInput}
                             </p>
                         </div>
-                        <div className="rounded-xl border border-gray-200 p-4">
-                            <h3 className="text-sm font-semibold text-gray-700">
+                        <div className="rounded-xl border border-gray-200 p-4 dark:border-gray-800 dark:bg-gray-950">
+                            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                                 Identidade do agente
                             </h3>
-                            <div className="mt-2 space-y-1 text-sm text-gray-600">
+                            <div className="mt-2 space-y-1 text-sm text-gray-600 dark:text-gray-300">
                                 <p>
                                     Nome:{' '}
                                     {agentName
@@ -473,29 +475,29 @@ const CreateAgent: React.FC = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="rounded-xl border border-gray-200 p-4">
-                            <h3 className="text-sm font-semibold text-gray-700">
+                        <div className="rounded-xl border border-gray-200 p-4 dark:border-gray-800 dark:bg-gray-950">
+                            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                                 Modelo selecionado
                             </h3>
-                            <p className="mt-2 text-sm text-gray-600">
+                            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
                                 {selectedModel}
                             </p>
                         </div>
-                        <div className="rounded-xl border border-gray-200 p-4">
-                            <h3 className="text-sm font-semibold text-gray-700">
+                        <div className="rounded-xl border border-gray-200 p-4 dark:border-gray-800 dark:bg-gray-950">
+                            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                                 Canais de saída
                             </h3>
-                            <p className="mt-2 text-sm text-gray-600">
+                            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
                                 {selectedOutput
                                     ? selectedOutput
                                     : 'Nenhum canal selecionado'}
                             </p>
                         </div>
-                        <div className="rounded-xl border border-gray-200 p-4">
-                            <h3 className="text-sm font-semibold text-gray-700">
+                        <div className="rounded-xl border border-gray-200 p-4 dark:border-gray-800 dark:bg-gray-950">
+                            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                                 Status do agente
                             </h3>
-                            <p className="mt-1 text-xs text-gray-500">
+                            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                                 Defina como o agente ficará disponível após
                                 salvar.
                             </p>
@@ -506,18 +508,18 @@ const CreateAgent: React.FC = () => {
                                         event.target.value as AgentStatus
                                     )
                                 }
-                                className="mt-3 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                                className="mt-3 w-full rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none dark:border-gray-700 dark:text-gray-100"
                             >
                                 <option value="Ativo">Ativo</option>
                                 <option value="Inativo">Inativo</option>
                                 <option value="Programado">Programado</option>
                             </select>
                         </div>
-                        <div className="rounded-xl border border-gray-200 p-4">
-                            <h3 className="text-sm font-semibold text-gray-700">
+                        <div className="rounded-xl border border-gray-200 p-4 dark:border-gray-800 dark:bg-gray-950">
+                            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                                 Recursos habilitados
                             </h3>
-                            <ul className="mt-2 space-y-1 text-sm text-gray-600">
+                            <ul className="mt-2 space-y-1 text-sm text-gray-600 dark:text-gray-300">
                                 <li>
                                     Base de conhecimento:{' '}
                                     {knowledgeBaseEnabled ? 'Ativa' : 'Inativa'}
@@ -532,11 +534,11 @@ const CreateAgent: React.FC = () => {
                                 </li>
                             </ul>
                         </div>
-                        <div className="rounded-xl border border-gray-200 p-4">
-                            <h3 className="text-sm font-semibold text-gray-700">
+                        <div className="rounded-xl border border-gray-200 p-4 dark:border-gray-800 dark:bg-gray-950">
+                            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                                 Ajustes do agente
                             </h3>
-                            <ul className="mt-2 space-y-1 text-sm text-gray-600">
+                            <ul className="mt-2 space-y-1 text-sm text-gray-600 dark:text-gray-300">
                                 <li>
                                     Criatividade:{' '}
                                     {(temperature * 100).toFixed(0)}%
@@ -562,14 +564,14 @@ const CreateAgent: React.FC = () => {
             <footer className="flex flex-wrap items-center justify-end gap-3">
                 <Link
                     to="/agentes"
-                    className="inline-flex items-center justify-center rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition hover:border-indigo-300"
+                    className="inline-flex items-center justify-center rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition hover:border-indigo-300 dark:border-gray-700 dark:text-gray-300 dark:hover:border-indigo-400"
                 >
                     Cancelar
                 </Link>
                 <button
                     type="button"
                     onClick={handlePreviousStep}
-                    className="inline-flex items-center justify-center rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition hover:border-indigo-300"
+                    className="inline-flex items-center justify-center rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition hover:border-indigo-300 dark:border-gray-700 dark:text-gray-300 dark:hover:border-indigo-400"
                     disabled={activeStep === 0}
                 >
                     Voltar
@@ -577,7 +579,7 @@ const CreateAgent: React.FC = () => {
                 <button
                     type="button"
                     onClick={handleNextStep}
-                    className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700"
+                    className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400"
                     disabled={activeStep === 3}
                 >
                     Avançar
@@ -586,7 +588,7 @@ const CreateAgent: React.FC = () => {
                     <button
                         type="button"
                         onClick={handleSaveAgent}
-                        className="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                        className="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-400"
                     >
                         Salvar agente
                     </button>
@@ -610,17 +612,21 @@ const ToggleCard = ({
     onChange,
 }: ToggleCardProps) => {
     return (
-        <div className="rounded-xl border border-gray-200 px-4 py-3 text-left text-sm text-gray-600">
+        <div className="rounded-xl border border-gray-200 px-4 py-3 text-left text-sm text-gray-600 dark:border-gray-800 dark:bg-gray-950 dark:text-gray-300">
             <div className="flex items-center gap-2">
                 <input
                     type="checkbox"
-                    className="h-4 w-4"
+                    className="h-4 w-4 accent-indigo-500"
                     checked={checked}
                     onChange={(event) => onChange(event.target.checked)}
                 />
-                <span className="font-semibold text-gray-700">{label}</span>
+                <span className="font-semibold text-gray-700 dark:text-gray-200">
+                    {label}
+                </span>
             </div>
-            <p className="mt-2 text-xs text-gray-500">{description}</p>
+            <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                {description}
+            </p>
         </div>
     )
 }
@@ -633,10 +639,10 @@ type SliderControlProps = {
 
 const SliderControl = ({ label, value, onChange }: SliderControlProps) => {
     return (
-        <div className="rounded-xl border border-gray-200 bg-white p-4">
-            <div className="flex items-center justify-between text-sm font-medium text-gray-700">
+        <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-950">
+            <div className="flex items-center justify-between text-sm font-medium text-gray-700 dark:text-gray-200">
                 <span>{label}</span>
-                <span className="text-xs text-gray-400">
+                <span className="text-xs text-gray-400 dark:text-gray-500">
                     {(value * 100).toFixed(0)}%
                 </span>
             </div>
