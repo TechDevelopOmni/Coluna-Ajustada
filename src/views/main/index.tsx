@@ -1,14 +1,26 @@
 import React from 'react'
 
+import ColorBends from './ColorBends'
+
 const MainView: React.FC = () => {
     return (
         <main className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-slate-950 text-white">
             <div className="pointer-events-none absolute inset-0">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.08),_transparent_55%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_40%,_rgba(255,92,122,0.45),_transparent_45%)] blur-3xl" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,_rgba(138,92,255,0.35),_transparent_55%)] blur-3xl" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,_rgba(0,255,209,0.28),_transparent_55%)] blur-3xl" />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/20 to-slate-950" />
+                <ColorBends
+                    colors={['#ff5c7a', '#8a5cff', '#00ffd1']}
+                    rotation={0}
+                    speed={0.2}
+                    scale={1}
+                    frequency={1}
+                    warpStrength={1}
+                    mouseInfluence={1}
+                    parallax={0.5}
+                    noise={0.1}
+                    transparent
+                    autoRotate={0}
+                    className="opacity-90"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/40 to-slate-950" />
             </div>
             <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 text-center">
                 <span className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
