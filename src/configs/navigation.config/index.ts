@@ -9,16 +9,6 @@ import type { NavigationTree } from '@/@types/navigation'
 
 const navigationConfig: NavigationTree[] = [
     {
-        key: 'home',
-        path: '/dashboard',
-        title: 'Dashboard',
-        translateKey: 'nav.home',
-        icon: 'home',
-        type: NAV_ITEM_TYPE_ITEM,
-        authority: [],
-        subMenu: [],
-    },
-    {
         key: 'ai-platform',
         path: '',
         title: 'Studio IA',
