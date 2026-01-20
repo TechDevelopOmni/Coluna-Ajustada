@@ -63,7 +63,7 @@ const MainView: React.FC = () => {
                 <span className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
                     Bem-vindo(a) ao OmniSaaS Studio IA
                 </span>
-                <h1 className="mt-6 text-4xl font-semibold leading-tight text-white sm:text-5xl">
+                <h1 className="mt-6 min-h-[3.75em] text-4xl font-semibold leading-tight text-white sm:text-5xl">
                     {typedText}
                 </h1>
                 <p className="mt-4 text-base text-white/70 sm:text-lg">
