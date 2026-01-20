@@ -9,16 +9,6 @@ import type { NavigationTree } from '@/@types/navigation'
 
 const navigationConfig: NavigationTree[] = [
     {
-        key: 'home',
-        path: '/dashboard',
-        title: 'Dashboard',
-        translateKey: 'nav.home',
-        icon: 'home',
-        type: NAV_ITEM_TYPE_ITEM,
-        authority: [],
-        subMenu: [],
-    },
-    {
         key: 'ai-platform',
         path: '',
         title: 'Studio IA',
@@ -27,6 +17,16 @@ const navigationConfig: NavigationTree[] = [
         type: NAV_ITEM_TYPE_COLLAPSE,
         authority: [],
         subMenu: [
+            {
+                key: 'ai-platform.dashboard',
+                path: '/dashboard',
+                title: 'Dashboard',
+                translateKey: 'nav.aiPlatform.dashboard',
+                icon: 'home',
+                type: NAV_ITEM_TYPE_ITEM,
+                authority: [],
+                subMenu: [],
+            },
             {
                 key: 'ai-platform.agents',
                 path: '/agentes',
@@ -43,6 +43,16 @@ const navigationConfig: NavigationTree[] = [
                 title: 'Gatilhos',
                 translateKey: 'nav.aiPlatform.triggers',
                 icon: 'pi',
+                type: NAV_ITEM_TYPE_ITEM,
+                authority: [],
+                subMenu: [],
+            },
+            {
+                key: 'ai-platform.library',
+                path: '/Biblioteca',
+                title: 'Biblioteca',
+                translateKey: 'nav.aiPlatform.library',
+                icon: 'files',
                 type: NAV_ITEM_TYPE_ITEM,
                 authority: [],
                 subMenu: [],

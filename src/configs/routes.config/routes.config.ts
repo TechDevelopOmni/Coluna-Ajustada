@@ -9,7 +9,7 @@ export const protectedRoutes: Routes = [
     {
         key: 'dashboard',
         path: '/dashboard',
-        component: lazy(() => import('@/views/ai-platform/UsageDashboard')),
+        component: lazy(() => import('@/views/dashboard')),
         authority: [],
     },
     {
@@ -40,6 +40,12 @@ export const protectedRoutes: Routes = [
         component: lazy(
             () => import('@/views/ai-platform/AgentConfiguration')
         ),
+        authority: [],
+    },
+    {
+        key: 'biblioteca',
+        path: '/Biblioteca',
+        component: lazy(() => import('@/views/Biblioteca')),
         authority: [],
     },
     {
