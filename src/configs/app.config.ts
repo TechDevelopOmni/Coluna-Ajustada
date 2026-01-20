@@ -9,7 +9,7 @@ export type AppConfig = {
 
 const appConfig: AppConfig = {
     apiPrefix: 'https://localhost:7226/api/',
-    authenticatedEntryPath: '/dashboard',
+    authenticatedEntryPath: '/main',
     unAuthenticatedEntryPath: '/sign-in',
     locale: 'en',
     accessTokenPersistStrategy: 'cookies',

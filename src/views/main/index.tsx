@@ -86,7 +86,7 @@ const MainView: React.FC = () => {
                         </p>
                     </Link>
                     <Link
-                        to="/Arquivos"
+                        to="/Biblioteca"
                         className="group rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 via-white/5 to-white/0 p-6 text-left shadow-[0_12px_40px_rgba(16,0,43,0.35)] backdrop-blur transition hover:-translate-y-1 hover:border-white/30 hover:from-white/15 hover:via-white/10"
                     >
                         <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-lg text-white/80">
@@ -96,7 +96,7 @@ const MainView: React.FC = () => {
                             Biblioteca
                         </h2>
                         <p className="mt-2 text-sm text-white/70">
-                            Acesse documentos, modelos e materiais essenciais.
+                            Explore agentes prontos para implantar integrações.
                         </p>
                     </Link>
                     <Link
