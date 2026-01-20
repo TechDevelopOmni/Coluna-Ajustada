@@ -1,8 +1,44 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import ColorBends from './ColorBends'
 
+const typingPhrases = [
+    'O espaço inicial para você descobrir tudo o que pode fazer na plataforma.',
+    'O ponto de partida para criar fluxos, acompanhar resultados e organizar conteúdos.',
+]
+
 const MainView: React.FC = () => {
+    const typingSpeed = 75
+    const pauseDuration = 1500
+    const [phraseIndex, setPhraseIndex] = useState(0)
+    const [charIndex, setCharIndex] = useState(0)
+    const [isDeleting, setIsDeleting] = useState(false)
+
+    useEffect(() => {
+        const currentPhrase = typingPhrases[phraseIndex]
+        let timeoutId: ReturnType<typeof setTimeout>
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            timeoutId = setTimeout(() => {
+                setIsDeleting(true)
+            }, pauseDuration)
+        } else if (isDeleting && charIndex === 0) {
+            timeoutId = setTimeout(() => {
+                setIsDeleting(false)
+                setPhraseIndex((prev) => (prev + 1) % typingPhrases.length)
+            }, 300)
+        } else {
+            timeoutId = setTimeout(() => {
+                setCharIndex((prev) => prev + (isDeleting ? -1 : 1))
+            }, isDeleting ? typingSpeed / 2 : typingSpeed)
+        }
+
+        return () => clearTimeout(timeoutId)
+    }, [charIndex, isDeleting, pauseDuration, phraseIndex, typingSpeed])
+
+    const currentPhrase = typingPhrases[phraseIndex]
+    const typedText = currentPhrase.slice(0, charIndex)
+
     return (
         <main className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-slate-950 text-white">
             <div className="pointer-events-none absolute inset-0">
@@ -27,8 +63,7 @@ const MainView: React.FC = () => {
                     Bem-vindo(a) ao Coluna Ajustada
                 </span>
                 <h1 className="mt-6 text-4xl font-semibold leading-tight text-white sm:text-5xl">
-                    O espaço inicial para você descobrir tudo o que pode fazer na
-                    plataforma.
+                    {typedText}
                 </h1>
                 <p className="mt-4 text-base text-white/70 sm:text-lg">
                     Escolha um caminho para começar: criar um fluxo, acompanhar resultados ou
