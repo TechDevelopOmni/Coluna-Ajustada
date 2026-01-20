@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import ColorBends from './ColorBends'
 
@@ -69,13 +70,49 @@ const MainView: React.FC = () => {
                     Escolha um caminho para começar: criar um fluxo, acompanhar resultados ou
                     organizar seus conteúdos antes de entrar no sistema.
                 </p>
-                <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <button className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/90">
-                        Começar agora
-                    </button>
-                    <button className="rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/10">
-                        Ver possibilidades
-                    </button>
+                <div className="mt-10 grid w-full gap-4 sm:grid-cols-3">
+                    <Link
+                        to="/criaragente"
+                        className="group rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 via-white/5 to-white/0 p-6 text-left shadow-[0_12px_40px_rgba(16,0,43,0.35)] backdrop-blur transition hover:-translate-y-1 hover:border-white/30 hover:from-white/15 hover:via-white/10"
+                    >
+                        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-lg text-white/80">
+                            ✨
+                        </div>
+                        <h2 className="mt-4 text-lg font-semibold text-white">
+                            Criar agentes
+                        </h2>
+                        <p className="mt-2 text-sm text-white/70">
+                            Inicie um novo agente e personalize o fluxo ideal.
+                        </p>
+                    </Link>
+                    <Link
+                        to="/Arquivos"
+                        className="group rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 via-white/5 to-white/0 p-6 text-left shadow-[0_12px_40px_rgba(16,0,43,0.35)] backdrop-blur transition hover:-translate-y-1 hover:border-white/30 hover:from-white/15 hover:via-white/10"
+                    >
+                        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-lg text-white/80">
+                            📚
+                        </div>
+                        <h2 className="mt-4 text-lg font-semibold text-white">
+                            Biblioteca
+                        </h2>
+                        <p className="mt-2 text-sm text-white/70">
+                            Acesse documentos, modelos e materiais essenciais.
+                        </p>
+                    </Link>
+                    <Link
+                        to="/agentes"
+                        className="group rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 via-white/5 to-white/0 p-6 text-left shadow-[0_12px_40px_rgba(16,0,43,0.35)] backdrop-blur transition hover:-translate-y-1 hover:border-white/30 hover:from-white/15 hover:via-white/10"
+                    >
+                        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-lg text-white/80">
+                            🤖
+                        </div>
+                        <h2 className="mt-4 text-lg font-semibold text-white">
+                            Meus Agentes
+                        </h2>
+                        <p className="mt-2 text-sm text-white/70">
+                            Gerencie seus agentes ativos e acompanhe resultados.
+                        </p>
+                    </Link>
                 </div>
             </div>
         </main>
