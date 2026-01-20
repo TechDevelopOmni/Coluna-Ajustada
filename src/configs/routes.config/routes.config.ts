@@ -23,6 +23,10 @@ export const protectedRoutes: Routes = [
         path: '/main',
         component: lazy(() => import('@/views/main')),
         authority: [],
+        meta: {
+            layout: 'blank',
+            pageContainerType: 'gutterless',
+        },
     },
     {
         key: 'arquivos',
