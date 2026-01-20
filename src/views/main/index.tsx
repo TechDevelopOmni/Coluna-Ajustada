@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import ColorBends from './ColorBends'
 
 const typingPhrases = [
-    'O espaço inicial para você descobrir tudo o que pode fazer na plataforma.',
-    'O ponto de partida para criar fluxos, acompanhar resultados e organizar conteúdos.',
+    'Crie seus agentes de IA que executam processos, de forma simples.',
+    'Automatize, Reduza, Integre e Escale com IA',
 ]
 
 const MainView: React.FC = () => {
@@ -46,12 +46,12 @@ const MainView: React.FC = () => {
                 <ColorBends
                     colors={['#ff5c7a', '#8a5cff', '#00ffd1']}
                     rotation={0}
-                    speed={0.2}
+                    speed={0.1}
                     scale={1}
                     frequency={1}
                     warpStrength={1}
                     mouseInfluence={1}
-                    parallax={0.5}
+                    parallax={0.9}
                     noise={0.1}
                     transparent
                     autoRotate={0}
@@ -61,14 +61,14 @@ const MainView: React.FC = () => {
             </div>
             <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 text-center">
                 <span className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
-                    Bem-vindo(a) ao Coluna Ajustada
+                    Bem-vindo(a) ao OmniSaaS Studio IA
                 </span>
                 <h1 className="mt-6 text-4xl font-semibold leading-tight text-white sm:text-5xl">
                     {typedText}
                 </h1>
                 <p className="mt-4 text-base text-white/70 sm:text-lg">
-                    Escolha um caminho para começar: criar um fluxo, acompanhar resultados ou
-                    organizar seus conteúdos antes de entrar no sistema.
+                    Escolha um caminho para começar: criar um Agente, Bibliotecas de agentes já criados ou
+                    acompanhar seus resultados.
                 </p>
                 <div className="mt-10 grid w-full gap-4 sm:grid-cols-3">
                     <Link
