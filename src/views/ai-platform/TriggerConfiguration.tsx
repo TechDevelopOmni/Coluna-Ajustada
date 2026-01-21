@@ -9,6 +9,8 @@ type TriggerModel = {
     lastRun: string
 }
 
+type PeriodOption = 'Em tempo real' | 'Diário' | 'Semanal' | 'Mensal' | 'Dias úteis'
+
 const TriggerConfiguration: React.FC = () => {
     // Lista mockada de agentes disponíveis para uso em gatilhos.
     const availableAgents = useMemo(
@@ -45,7 +47,27 @@ const TriggerConfiguration: React.FC = () => {
     const [triggers, setTriggers] = useState<TriggerModel[]>(initialTriggers)
     const [agent, setAgent] = useState(availableAgents[0])
     const [condition, setCondition] = useState('')
-    const [frequency, setFrequency] = useState('Em tempo real')
+    const [period, setPeriod] = useState<PeriodOption>('Em tempo real')
+    const [scheduleDetail, setScheduleDetail] = useState('Imediato')
+
+    const scheduleOptions = useMemo(
+        () => ({
+            'Em tempo real': ['Imediato'],
+            Diário: ['Todos os dias às 08:00', 'Todos os dias às 14:00'],
+            Semanal: ['Segunda às 09:00', 'Quarta às 15:00', 'Sexta às 18:00'],
+            Mensal: ['Dia 1º às 09:00', 'Dia 15 às 10:00', 'Último dia às 17:30'],
+            'Dias úteis': ['Seg-Sex às 08:30', 'Seg-Sex às 18:00'],
+        }),
+        []
+    )
+
+    const frequency = useMemo(() => {
+        if (period === 'Em tempo real') {
+            return 'Em tempo real'
+        }
+
+        return `${period} • ${scheduleDetail}`
+    }, [period, scheduleDetail])
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -62,7 +84,8 @@ const TriggerConfiguration: React.FC = () => {
 
         setTriggers((current) => [newTrigger, ...current])
         setCondition('')
-        setFrequency('Em tempo real')
+        setPeriod('Em tempo real')
+        setScheduleDetail('Imediato')
         setAgent(availableAgents[0])
     }
 
@@ -121,18 +144,42 @@ const TriggerConfiguration: React.FC = () => {
                         </label>
 
                         <label className="flex flex-col gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Frequência
+                            Período
                             <select
-                                value={frequency}
-                                onChange={(event) =>
-                                    setFrequency(event.target.value)
-                                }
+                                value={period}
+                                onChange={(event) => {
+                                    const value = event.target
+                                        .value as PeriodOption
+                                    setPeriod(value)
+                                    setScheduleDetail(
+                                        scheduleOptions[value][0]
+                                    )
+                                }}
                                 className="rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none dark:border-gray-700 dark:text-gray-100"
                             >
-                                <option>Em tempo real</option>
-                                <option>A cada 15 minutos</option>
-                                <option>A cada 1 hora</option>
-                                <option>Diariamente às 08:00</option>
+                                {Object.keys(scheduleOptions).map((item) => (
+                                    <option key={item} value={item}>
+                                        {item}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+
+                        <label className="flex flex-col gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Configuração do período
+                            <select
+                                value={scheduleDetail}
+                                onChange={(event) =>
+                                    setScheduleDetail(event.target.value)
+                                }
+                                className="rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none dark:border-gray-700 dark:text-gray-100"
+                                disabled={period === 'Em tempo real'}
+                            >
+                                {scheduleOptions[period].map((item) => (
+                                    <option key={item} value={item}>
+                                        {item}
+                                    </option>
+                                ))}
                             </select>
                         </label>
                     </div>
