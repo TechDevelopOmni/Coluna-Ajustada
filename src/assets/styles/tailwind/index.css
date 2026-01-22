@@ -104,6 +104,6 @@
 
 @layer utilities {
 	.dark\:bg-gray-900:is(.dark *) {
-		background-color: #0f172a7a;
+		background-color: #0f172aa3;
 	}
 }
